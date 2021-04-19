@@ -1,7 +1,9 @@
 package com.deni.crudrest2.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,13 +51,20 @@ public class TutorialController {
 		}
 	}
 
+//	response nya bisa di manipulasi pake map
 	@GetMapping("/tutorials/{id}")
-	public ResponseEntity<Tutorial> getTutorialById(@PathVariable("id") long id) {
+	public ResponseEntity<Map<String, Object>> getTutorialById(@PathVariable("id") long id) {
 		Optional<Tutorial> tutorialData = tutorialRepository.findById(id);
+		Map<String, Object> response = new HashMap<String, Object>();
 		if (tutorialData.isPresent()) {
-			return new ResponseEntity<>(tutorialData.get(), HttpStatus.OK);
+			response.put("status", true);
+			response.put("data", tutorialData.get());
+			response.put("message", "oke");
+			return new ResponseEntity<>(response, HttpStatus.OK);
 		} else {
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+			response.put("message", "not found");
+			response.put("status", false);
+			return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
 		}
 	}
 
@@ -64,6 +73,9 @@ public class TutorialController {
 		try {
 			Tutorial _tutorial = tutorialRepository
 					.save(new Tutorial(tutorial.getTitle(), tutorial.getDescription(), false));
+			Map<String, Object> response = new HashMap<String, Object>();
+			response.put("status", true);
+			response.put("tutorial", _tutorial);
 			return new ResponseEntity<>(_tutorial, HttpStatus.CREATED);
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -85,9 +97,9 @@ public class TutorialController {
 			return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
 		}
 	}
-	
+
 	@DeleteMapping("/tutorials/{id}")
-	public ResponseEntity<HttpStatus> deleteTutorial(@PathVariable("id") long id){
+	public ResponseEntity<HttpStatus> deleteTutorial(@PathVariable("id") long id) {
 		try {
 			tutorialRepository.deleteById(id);
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -96,9 +108,9 @@ public class TutorialController {
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
-	
+
 	@DeleteMapping("/tutorials")
-	public ResponseEntity<HttpStatus> deleteAllTutorials(){
+	public ResponseEntity<HttpStatus> deleteAllTutorials() {
 		try {
 			tutorialRepository.deleteAll();
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -107,13 +119,13 @@ public class TutorialController {
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
-	
+
 	@GetMapping("/tutorials/published")
-	public ResponseEntity<List<Tutorial>> findByPublished(){
+	public ResponseEntity<List<Tutorial>> findByPublished() {
 		try {
 			List<Tutorial> tutorials = tutorialRepository.findByPublished(true);
-			
-			if(tutorials.isEmpty()) {
+
+			if (tutorials.isEmpty()) {
 				return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 			}
 			return new ResponseEntity<>(tutorials, HttpStatus.OK);
