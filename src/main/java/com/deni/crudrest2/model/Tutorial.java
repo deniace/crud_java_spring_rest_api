@@ -17,6 +17,9 @@ public class Tutorial {
 
 	@Column(name = "title")
 	private String title;
+	
+//	@Column(name = "judul")
+//	private String judul;
 
 	@Column(name = "description")
 	private String description;
@@ -40,6 +43,8 @@ public class Tutorial {
 	public void setId(long id) {
 		this.id = id;
 	}
+	
+	
 
 	public String getTitle() {
 		return title;
@@ -48,6 +53,14 @@ public class Tutorial {
 	public void setTitle(String title) {
 		this.title = title;
 	}
+
+//	public String getJudul() {
+//		return judul;
+//	}
+//
+//	public void setJudul(String judul) {
+//		this.judul = judul;
+//	}
 
 	public String getDescription() {
 		return description;

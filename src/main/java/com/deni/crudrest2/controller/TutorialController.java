@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.deni.crudrest2.model.Tutorial;
 import com.deni.crudrest2.repository.TutorialRepository;
+import com.deni.crudrest2.util.ResponseUtil;
 
 @RestController
 @RequestMapping("/api")
@@ -67,6 +68,18 @@ public class TutorialController {
 			return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
 		}
 	}
+	
+//	response nya bisa di manipulasi pake object yang dibuat sendiri
+//	@GetMapping("/tutorials1/{id}")
+//	public ResponseEntity<?> getTutorById(@PathVariable("id") long id) {
+//		Optional<Tutorial> tutorialData = tutorialRepository.findById(id);
+//		if (tutorialData.isPresent()) {
+//			return new ResponseEntity<>(ResponseUtil.responseConstruct(true, tutorialData.get(), "oke"), HttpStatus.OK);
+//		} else {
+//			return new ResponseEntity<>(ResponseUtil.responseConstruct(false, null, "not found"), HttpStatus.NOT_FOUND);
+//		}
+//	}
+
 
 	@PostMapping("/tutorials")
 	public ResponseEntity<Tutorial> createTutorial(@RequestBody Tutorial tutorial) {
