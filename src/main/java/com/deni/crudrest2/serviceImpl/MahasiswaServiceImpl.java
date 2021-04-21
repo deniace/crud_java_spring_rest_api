@@ -46,10 +46,9 @@ public class MahasiswaServiceImpl implements MahasiswaService {
 
 	@Override
 	public void save(Mahasiswa mhs) {
-		// TODO Auto-generated method stub
 		dao.save(mhs);
 	}
-	
+
 	@Override
 	public void delete(Integer id) {
 		dao.deleteById(id);
