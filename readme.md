@@ -43,4 +43,4 @@ ini coba edit dari github
 
 ini coba dari local 1
 
-coba dari local 2
+coba dari github 2
