@@ -40,3 +40,5 @@ ini cobain lagi ah
 
 ini coba dari local
 ini coba edit dari github 
+
+ini coba dari github 1
