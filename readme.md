@@ -35,5 +35,3 @@ url = localhost:8080/api/tutorials/published
 
 ![Screenshoot](https://github.com/deniace/crud_java_spring_rest_api/blob/master/screenshot/get.PNG)
 ![Screenshoot2](https://github.com/deniace/crud_java_spring_rest_api/blob/master/screenshot/post.PNG)
-
-test test
