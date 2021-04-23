@@ -37,3 +37,5 @@ url = localhost:8080/api/tutorials/published
 ![Screenshoot2](https://github.com/deniace/crud_java_spring_rest_api/blob/master/screenshot/post.PNG)
 
 ini cobain lagi ah 
+
+ini coba dari local
